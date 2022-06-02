@@ -2,16 +2,23 @@ var fs = require('fs');
 
 var data = fs.readFileSync('data.json');
 
-var obj = JSON.parse(data);
+var recipes = JSON.parse(data);
 
 const express = require('express');
 
 const port = process.env.PORT || 3000;
 
+const {
+    readFromFile,
+    readAndAppend,
+    writeToFile,
+} = require('./utils');
+
 //Setting up app and middlewares
 const app = express();
 const bodyParser = require('body-parser');
 const { json } = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -20,7 +27,7 @@ app.use(bodyParser.json());
 
 //GET all recipe data in base file
 app.get('/', (req, res) => {
-    res.json(obj);
+    res.json(recipes);
     console.log("this is the recipe list on the homepage");
 });
 
@@ -28,7 +35,7 @@ app.get('/', (req, res) => {
 
 app.get('/recipes', (req, res) => {
     // Get all names of recipes
-    const recipeNames = obj.recipes.map(recipe => recipe.name);
+    const recipeNames = recipes.recipes.map(recipe => recipe.name);
     // send recipeNames as JSON
     res.json({ recipeNames: recipeNames })
 
@@ -40,7 +47,7 @@ app.get('/recipes', (req, res) => {
 
 //GET specific recipe
 app.get('/recipes/details/:name', (req, res) => {
-    const allRecipes = obj.recipes.map(recipe => recipe);
+    const allRecipes = recipes.recipes.map(recipe => recipe);
     res.json({ allRecipes: allRecipes })
     console.log("all recipes");
 
@@ -64,33 +71,26 @@ app.get('/recipes/details/:name', (req, res) => {
 
 //POST new recipe
 app.post('/recipes', (req, res) => {
+    console.log("79 ", req.body)
 
     console.info(`${req.method} request received to add new recipe`)
 
-    //destructured for the items in the req.body
-    const { name, ingredients, instructions } = obj.recipes;
-    //create recipe
-    const recipe = {
-        name: req.body.name,
-        ingredients: req.body.ingredients,
-        instructions: req.body.instructions
-    };
-    data[req.body.name] = recipe;
-
-    if (name && ingredients && instructions) {
+    if (req.body) {
         const newRecipe = {
-            name,
-            ingredients,
-            instructions,
+            name: req.body.name,
+            ingredients: req.body.ingredients,
+            instructions: req.body.instructions
         };
 
+        console.log("90 ", newRecipe)
         const response = {
             status: 'success',
             body: newRecipe
         };
-        res.send(newRecipe);
-        console.log(response);
-        res.status(201).json(response);
+
+        readAndAppend(newRecipe, './data.json');
+        console.log("97 ", response);
+        res.status(201).json("recipe added");
     } else {
         res.status(500).json('Error in posting recipe')
     }
