@@ -88,12 +88,21 @@ app.post('/recipes', (req, res) => {
             body: newRecipe
         };
 
+        //access to update json file
         readAndAppend(newRecipe, './data.json');
         console.log("97 ", response);
         res.status(201).json("recipe added");
     } else {
         res.status(500).json('Error in posting recipe')
     }
+})
+
+//Update recipe
+app.put('recipes', (req, res) => {
+    console.log(req.body);
+
+    //find recipe name and update it
+
 })
 
 //local base port
