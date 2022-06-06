@@ -59,12 +59,12 @@ app.get('/recipes/details/:name', (req, res) => {
 });
 
 //GET all of same tag
-app.get('/recipes/details/:tags', (req, res) => {
+app.get('/recipes/:tags', (req, res) => {
     if (req.params.tags) {
         console.log(req.params.tags);
         const recipeTag = req.params.tags;
         const currRecipe = recipes.recipes.filter(recipe => recipe.tags === recipeTag);
-        console.log("55", currRecipe);
+        console.log("67", currRecipe);
         res.json(currRecipe)
     } else {
         res.status(400).send('Recipe tag not provided')
