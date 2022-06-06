@@ -8,11 +8,11 @@ const express = require('express');
 
 const port = process.env.PORT || 3000;
 
-const {
-    readFromFile,
-    readAndAppend,
-    writeToFile,
-} = require('./utils');
+// const {
+//     readFromFile,
+//     readAndAppend,
+//     writeToFile,
+// } = require('./utils');
 
 //Setting up app and middlewares
 const app = express();
@@ -61,8 +61,9 @@ app.get('/recipes/details/:name', (req, res) => {
 //GET all of same tag
 app.get('/recipes/:tags', (req, res) => {
     if (req.params.tags) {
-        console.log(req.params.tags);
+        //console.log(req.params.tags);
         const recipeTag = req.params.tags;
+        console.log(recipeTag);
         const currRecipe = recipes.recipes.filter(recipe => recipe.tags === recipeTag);
         console.log("67", currRecipe);
         res.json(currRecipe)

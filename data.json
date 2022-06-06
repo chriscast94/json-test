@@ -14,7 +14,7 @@
           "Gather eggs into curds, remove when cooked",
           "Salt to taste and enjoy"
         ],
-        "tags": "breakfast"
+        "tags": ["breakfast", "food"]
       },
       {
         "name": "garlicPasta",
@@ -32,7 +32,7 @@
           "Remove pasta from water and mix with garlic olive oil",
           "Salt to taste and enjoy"
         ],
-        "tags": "dinner"
+        "tags": ["dinner", "food"]
       },
       {
         "name": "chai",
@@ -48,7 +48,7 @@
           "Add tea leaves/tea bags, chai masala; mix and steep for 3-4 minutes",
           "Remove mixture from heat; strain and enjoy"
         ],
-        "tags": "drink"
+        "tags": ["drink", "liquid"]
       },
       {
         "name": "coffee",
@@ -64,7 +64,7 @@
           "Pour coffee and enjoy"
       
         ],
-        "tags": "drink"
+        "tags": ["drink", "liquid"]
       }
     ]
   }
