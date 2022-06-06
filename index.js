@@ -40,33 +40,37 @@ app.get('/recipes', (req, res) => {
     res.json({ recipeNames: recipeNames })
 
     console.log(recipeNames);
-    return res.send(recipeNames);
+    //return res.send(recipeNames);
 
 });
 
 
 //GET specific recipe
 app.get('/recipes/details/:name', (req, res) => {
-    const allRecipes = recipes.recipes.map(recipe => recipe);
-    res.json({ allRecipes: allRecipes })
-    console.log("all recipes");
-
     if (req.params.name) {
         console.log(req.params.name);
         const recipeName = req.params.name;
-        for (let i = 0; i < allRecipes.length; i++) {
-            const currRecipe = recipeName[i];
-            console.log(currRecipe);
-            if (currRecipe.name === recipeName) {
-                res.json(currRecipe);
-                return
-            }
-        }
-        res.status(404).send('Recipe not found');
+        const currRecipe = recipes.recipes.filter(recipe => recipe.name === recipeName);
+        console.log("55", currRecipe);
+        res.json(currRecipe)
     } else {
-        res.status(400).send("Recipe name not provided");
+        res.status(400).send('Recipe name not provided')
     }
 });
+
+app.get('/recipes/details/:tags', (req, res) => {
+    if (req.params.tags) {
+        console.log(req.params.tags);
+        const recipeTag = req.params.tags;
+        const currRecipe = recipes.recipes.filter(recipe => recipe.tags === recipeTag);
+        console.log("55", currRecipe);
+        res.json(currRecipe)
+    } else {
+        res.status(400).send('Recipe tag not provided')
+    }
+});
+
+
 
 
 //POST new recipe

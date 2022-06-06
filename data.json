@@ -13,7 +13,8 @@
           "Add eggs to pan when hot",
           "Gather eggs into curds, remove when cooked",
           "Salt to taste and enjoy"
-        ]
+        ],
+        "tags": "breakfast"
       },
       {
         "name": "garlicPasta",
@@ -30,7 +31,8 @@
           "Add pasta to boiling water",
           "Remove pasta from water and mix with garlic olive oil",
           "Salt to taste and enjoy"
-        ]
+        ],
+        "tags": "dinner"
       },
       {
         "name": "chai",
@@ -45,7 +47,24 @@
           "Add milk, heat until 80 C",
           "Add tea leaves/tea bags, chai masala; mix and steep for 3-4 minutes",
           "Remove mixture from heat; strain and enjoy"
-        ]
+        ],
+        "tags": "drink"
+      },
+      {
+        "name": "coffee",
+        "ingredients": [
+          "500mL water",
+          "5g ground coffee masala"
+        ],
+        "instructions": [
+          "Heat water until 80 C",
+          "Pour coffee grounds in french press",
+          "Pour hot water over grounds in the french press",
+          "Steep for 3-4 minutes, and then press on plunger to strain",
+          "Pour coffee and enjoy"
+      
+        ],
+        "tags": "drink"
       }
     ]
   }
