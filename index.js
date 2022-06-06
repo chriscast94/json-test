@@ -58,6 +58,7 @@ app.get('/recipes/details/:name', (req, res) => {
     }
 });
 
+//GET all of same tag
 app.get('/recipes/details/:tags', (req, res) => {
     if (req.params.tags) {
         console.log(req.params.tags);
